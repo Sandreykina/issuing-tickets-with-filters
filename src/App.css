@@ -1,0 +1,17 @@
+.app {
+    background-color: #F3F7FA;
+    min-height: 100vh;
+    min-width: 375px;
+    background-size: cover;
+}
+.app-content {
+    display: grid; 
+    grid-template-columns: 1fr 3fr; 
+    padding: 8vh 9.85vw 0;
+    gap: 20px;
+}
+.app-tickets {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+}
