@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useSelector} from 'react-redux';
 import './App.css';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
 import Ticket from './components/Ticket/Ticket';
-import initialTicketsData from './tickets.json';
 
 function App() {
-  const [tickets, setTickets] = useState([]);
-  useEffect(() => {
-    setTickets(initialTicketsData.tickets);
-  }, [initialTicketsData.tickets])
+const tickets = useSelector((state) => state.tickets.ticketsData);
 
   return (
     <div className="app">
