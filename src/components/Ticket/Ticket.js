@@ -1,22 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ticket from './Ticket.css';
 import logo from '../../images/turkish-airlines-logo.png';
+import { useSelector } from "react-redux";
 
 const Ticket = ({ ticket }) => {
+  const currentCurrency = useSelector(state => state.menu.currentCurrency);
+  const [currencySign, changeCurrencySign] = useState("₽");
   const handleButtonClick = () => {
     alert("Купить!")
-  }
+  };
+  useEffect(() => {
+    if (currentCurrency === 'RUB') {
+      changeCurrencySign("₽");
+    } if (currentCurrency === 'USD') {
+      changeCurrencySign("$");
+    } else if (currentCurrency === 'EUR') {
+      changeCurrencySign("€");
+    }
+  }, [currentCurrency]);
 
   return (
-    <article onClick={handleButtonClick} className="ticket">
+    <article className="ticket">
       <div className="ticket-booking">
         <div className="ticket-booking-carrier">
           TURKISH AIRLINES
           <img src={logo} alt="ticket-logo" className="ticket-logo" />
         </div>
-        <button type="button"
+        <button 
+          type="button"
+          onClick={handleButtonClick}
           className="ticket-btn"
-        >Купить за {ticket.price}
+        >Купить за {ticket.price} {currencySign}
         </button>
       </div>
       <div className="ticket-info">

@@ -1,23 +1,28 @@
 import React, { useState } from "react";
 import menu from './Menu.css';
+import { useDispatch } from "react-redux/es/exports";
+import { changeСurrency, updateSelect } from "../slices/menuSlice";
+import { useSelector } from "react-redux";
 
 const Menu = () => {
-    let checkTransfer = ['Все', 'Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'];
-    let currency = ['RUB', 'USD', 'EUR'];
-    const [checkedState, setCheckedState] = useState(
-        new Array(checkTransfer.length).fill(false)
+    
+    const currency = useSelector(state => state.menu.currency);
+    const currentCurrency = useSelector(state => state.menu.currentCurrency);
+    const transfers = useSelector(state => state.menu.transfers); 
+    const [checkedSelect, setCheckedSelect] = useState(
+        new Array(transfers.length).fill(false)
     );
-    const [radioValue, setRadioValue] = useState(null);
+    const dispatch = useDispatch();
 
     const handleRadioChange = e => {
-        setRadioValue(e.target.value);
+        dispatch(changeСurrency(e.target.value));
     };
-
-    const handleOnChange = (position) => {
-        const updatedCheckedState = checkedState.map((item, index) =>
+    const handleCheckboxChange = (position) => {
+        const updatedCheckedSelect = checkedSelect.map((item, index) =>
             index === position ? !item : item
         );
-        setCheckedState(updatedCheckedState);
+        setCheckedSelect(updatedCheckedSelect);
+        dispatch(updateSelect(checkedSelect))
     };
 
     return (
@@ -27,13 +32,13 @@ const Menu = () => {
                 {currency.map((c, i) => {
                     return (
                         <div key={i} className="radio">
-                            <label >
+                            <label>
                                 <input
                                     type="radio"
                                     id={c}
                                     name={c}
                                     value={c}
-                                    checked={radioValue === { c }}
+                                    checked={currentCurrency === { c }}
                                     onChange={handleRadioChange} />
                                 <span className="text">{c}</span>
                             </label>
@@ -41,30 +46,20 @@ const Menu = () => {
                 })}
             </div>
             <div>Количество пересадок</div>
-            {checkTransfer.map((c, i, index) => {
+            {transfers.map((c, i, index) => {
                 return (
-                    <div key={i}>
+                    <div key={i} className="checkbox">
                         <label>
                             <input
                                 type="checkbox"
-                                className="checkbox"
                                 value={c}
-                                checked={checkedState[index]}
-                                onChange={() => handleOnChange(index)} />
+                                checked={checkedSelect[index]}
+                                onChange={() => handleCheckboxChange(index)} />
                             <span className="fake-checkbox"></span>
                             <span className="text">{c}</span>
                         </label>
                     </div>)
             })}
-
-            {/* {updatedCheckedState.foreach(
-                //этот кусок надо через стор прокинуть в app, чтобы в зависимости от чекбоксов рендерить тикеты
-                (currentState, index) => {
-                    if (currentState === true) {
-                        return sum + tickets[index].stops;
-                    }
-                    return sum;
-                })} */}
         </div>
     );
 }

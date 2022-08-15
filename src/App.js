@@ -1,15 +1,18 @@
-import React from 'react';
-import { useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
 import Ticket from './components/Ticket/Ticket';
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
-function App() {
-const tickets = useSelector((state) => state.tickets.ticketsData);
+const App = () => {
+
+  const tickets = useSelector((state) => state.tickets.ticketsData);
+  const selectArr = useSelector((state) => state.menu.selectArr);
 
   return (
     <div className="app">
+      vfjnvfjnjfd
       <Header />
       <div className="app-content">
         <Menu />

@@ -6,8 +6,13 @@
     height: 316px;
     width: 226px;
     padding: 13px;
+    font-family: roboto;
+    font-size: 15px;
+    font-weight: 700;
+    color: grey;
 }
-.checkbox {
+/* for checkbox */
+input[type=checkbox] {
     display: none;
 }
 .fake-checkbox {
@@ -34,10 +39,18 @@
     opacity: 0;
     transition: .2s;
 } 
- .checkbox:checked+.fake-checkbox::before {
+input[type=checkbox]:checked+.fake-checkbox::before {
     opacity: 1;
 }
-
+.checkbox label {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: grey;
+    font-size: 18px;
+    padding-top: 10px;
+}
+/* for radio-buttons */
 .radio-group {
     display: inline-block;
     margin: 20px 0 20px;
@@ -65,11 +78,10 @@ input[type=radio] {
 .radio label {
     display: inline-block;
     font-weight: 500;
-    padding: 5px;
+    font-family: roboto;
+    padding: 12px 32.7% 12px;
     position: relative;
     font-size: 10px;
-    margin-left: auto;
-    margin-right: auto
 }
 .radio-group .radio:first-child {
     border-radius: 6px 0 0 6px;
@@ -78,97 +90,10 @@ input[type=radio] {
 	border-radius: 0 6px 6px 0;
 	border-right: 1px solid #999;
 }
-.input[type=radio]:checked + .radio label{
-    color: #2196F3;
-    background: #FFFFFF;
+input[type=radio]:checked + .radio label{
+    color: #FFFFFF;
+    background: black;
+    transition: .3s;
 }
 
-/* .radio-group {
-    border: solid 3px lighten(#332f35, 60%);
-    display: inline-block;
-    margin: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-.radio {
-    position: absolute;
-    visibility: hidden;
-    display: none;
-}
-.radio-group label {
-    color: lighten(#332f35,40%);
-    display: inline-block;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 5px 20px;
-}
-.radio:checked + .radio-group label{
-    color: lighten(#332f35,60%);
-    background: lighten(#332f35,60%);
-}
-.radio-group label + .radio + .radio-group label {
-    border-left: solid 3px lighten(#332f35, 60%);
-} */
-
-/*
-.menu-btns {
-    display: inline-block;
-    overflow: hidden;
-}
-.menu-btn {
-    display: block;
-    float: left; 
-}
-.menu-btns input[type=radio] {
-	display: none;
-}
-.menu-btns label {
-	display: inline-block;
-	cursor: pointer;
-	width: 50px;
-    line-height: 40px;
-	border: 2px solid #2196F3;
-	border-right: none;
-}
-.menu-btns .menu-btn:first-child label {
-	border-radius: 6px 0 0 6px;
-}
-.menu-btns .menu-btn:last-child label {
-	border-radius: 0 6px 6px 0;
-	border-right: 2px solid #2196F3;
-}
-.menu-btns input[type=radio]:checked + label {
-	background: #2196F3;
-    color: #FFFFFF;
-}
-.menu-btns label:hover {
-	color: #666;
-}
-.menu-btn-fake {
-    display: block;
-    width: 70px;
-    height: 40px;
-    background: #FFFFFF;
-    border: 2px solid #2196F3;
-    cursor: pointer;
-    color: #2196F3;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 24px;
-    letter-spacing: 1.4px;
-    align-items: center;
-    text-align: center;
-    transition: .3s opacity;
-    cursor: pointer;
-}
-.menu-btn-fake::before {
-    content: "";
-    background-color: black;
-    opacity: 0;
-    transition: .2s;
-}
-.radio:checked + .menu-btn-fake::before{
-    background: #2196F3;
-    color: #FFFFFF;
-}  */
+@import url('https://fonts.googleapis.com/css?family=Roboto');

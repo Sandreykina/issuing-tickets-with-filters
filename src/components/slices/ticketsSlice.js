@@ -9,6 +9,9 @@ export const ticketsSlice = createSlice({
     name: 'tickets',
     initialState,
     reducers: {
+        getTickets: (state, {payload}) => {
+
+        }
     }
 })
 export default ticketsSlice.reducer
