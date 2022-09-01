@@ -63,10 +63,23 @@
     display: flex;
     justify-content: space-between;
 }
+.ticket-info-stripe-arrow {
+    display: inline-flex;
+    justify-content: flex-end;
+}
 .ticket-info-stripe {
     margin: 0;
     width: 100px;
     border-bottom: 2px solid black;
+}
+.ticket-info-arrow {
+    display: block;
+    border-radius: 1px;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    width: 4px;
+    height: 4px;
+    transform: rotate(225deg);
 }
 .ticket-info-main-time {
     color: black;

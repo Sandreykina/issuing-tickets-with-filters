@@ -1,10 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    transfers: ['Все', 'Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'],
-    currency: ['RUB', 'USD', 'EUR'],
-    currentCurrency: 'RUB',
-    selectArr: [],
+    transfers: [{key: 'all', name:'Все'},
+        {key: 'without transfers', name:'Без пересадок'},
+        {key: 'one transfer', name:'1 пересадка'},
+        {key: 'two transfer', name:'2 пересадки'},
+        {key: 'three transfer', name:'3 пересадки'}],
+    currency: [{key: 'RUB', name:'RUB'},
+        {key: 'USD', name:'USD'},
+        {key: 'EUR', name:'EUR'}],
+    currentCurrency: this.currency.RUB,
+    selectArr: [this.transfers.lenght].fill(false),
 }
 
 export const menuSlice = createSlice({

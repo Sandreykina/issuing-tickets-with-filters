@@ -1,35 +1,32 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect  } from "react";
 import menu from './Menu.css';
 import { useDispatch } from "react-redux/es/exports";
 import { changeСurrency, updateSelect } from "../slices/menuSlice";
 import { useSelector } from "react-redux";
 
 const Menu = () => {
-    
+    debugger
     const currency = useSelector(state => state.menu.currency);
     const currentCurrency = useSelector(state => state.menu.currentCurrency);
     const transfers = useSelector(state => state.menu.transfers); 
-    const [checkedSelect, setCheckedSelect] = useState(
-        new Array(transfers.length).fill(false)
-    );
+    const selectArr = useSelector(state => state.menu.selectArr); 
     const dispatch = useDispatch();
 
     const handleRadioChange = e => {
-        dispatch(changeСurrency(e.target.value));
+        const value = e.target.value;
+        dispatch(changeСurrency({'value': 'value'}));
     };
     const handleCheckboxChange = (position) => {
-        const updatedCheckedSelect = checkedSelect.map((item, index) =>
+        const updatedChoose = selectArr.map((item, index) =>
             index === position ? !item : item
         );
-        setCheckedSelect(updatedCheckedSelect);
-        dispatch(updateSelect(checkedSelect))
+        dispatch(updateSelect(updatedChoose));
     };
-
     return (
         <div className="menu">
             <div>Валюта</div>
             <div className="radio-group">
-                {currency.map((c, i) => {
+                {currency.key.map((c, i) => {
                     return (
                         <div key={i} className="radio">
                             <label>
@@ -46,15 +43,15 @@ const Menu = () => {
                 })}
             </div>
             <div>Количество пересадок</div>
-            {transfers.map((c, i, index) => {
+            {transfers.key.map((c, i) => {
                 return (
                     <div key={i} className="checkbox">
                         <label>
                             <input
                                 type="checkbox"
                                 value={c}
-                                checked={checkedSelect[index]}
-                                onChange={() => handleCheckboxChange(index)} />
+                                checked={selectArr[i]}
+                                onChange={() => handleCheckboxChange(i)} />
                             <span className="fake-checkbox"></span>
                             <span className="text">{c}</span>
                         </label>

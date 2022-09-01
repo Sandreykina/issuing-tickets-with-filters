@@ -26,7 +26,7 @@ const Ticket = ({ ticket }) => {
           TURKISH AIRLINES
           <img src={logo} alt="ticket-logo" className="ticket-logo" />
         </div>
-        <button 
+        <button
           type="button"
           onClick={handleButtonClick}
           className="ticket-btn"
@@ -36,7 +36,10 @@ const Ticket = ({ ticket }) => {
       <div className="ticket-info">
         <div className="ticket-info-main">
           <div className="ticket-info-main-time">{ticket.departure_time}</div>
-          <div className="ticket-info-stripe">{ticket.stops} пересадка</div>
+          <div className="ticket-info-stripe-arrow">
+            <div className="ticket-info-stripe">{ticket.stops} пересадка </div>
+            <div className="ticket-info-arrow"></div>
+          </div>
           <div className="ticket-info-main-time">{ticket.arrival_time}</div>
         </div>
         <div className="ticket-info-subtitle">
